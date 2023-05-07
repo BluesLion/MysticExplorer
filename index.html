@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>克蘇魯的呼喚7版角色卡</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+<div id="app" class="container">
+    <h1 class="text-center my-4">克蘇魯的呼喚7版角色卡</h1>
+    <div class="row">
+        <div class="col-md-6 name-section mx-auto">
+            <div class="name-badge" :style="{ backgroundImage: 'url(' + avatarUrl + ')' }"></div>
+            <div class="badge rounded-pill bg-primary text-white name-text">
+                <span>{{ name.value }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="mt-4">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="border nav-link active" id="basic-info-tab" data-bs-toggle="tab"
+                        data-bs-target="#basic-info" type="button" role="tab" aria-controls="basic-info"
+                        aria-selected="true">基本屬性
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="border nav-link" id="skills-tab" data-bs-toggle="tab" data-bs-target="#skills"
+                        type="button" role="tab" aria-controls="skills" aria-selected="false">調查員技能
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="border nav-link" id="equipment-tab" data-bs-toggle="tab" data-bs-target="#equipment"
+                        type="button" role="tab" aria-controls="equipment" aria-selected="false">裝備
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="border nav-link" id="spells-tab" data-bs-toggle="tab" data-bs-target="#spells"
+                        type="button" role="tab" aria-controls="spells" aria-selected="false">咒語
+                </button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="basic-info" role="tabpanel" aria-labelledby="basic-info-tab">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card" data-bs-toggle="tooltip" data-bs-placement="top" :title="occupation.label">
+                            {{ occupation.value }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card" data-bs-toggle="tooltip" data-bs-placement="top" :title="age.label">
+                            {{age.value }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card" data-bs-toggle="tooltip" data-bs-placement="bottom" :title="residence.label">
+                            {{ residence.value }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card" data-bs-toggle="tooltip" data-bs-placement="bottom" :title="birthplace.label">
+                            {{ birthplace.value }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-cols-1 row-cols-md-3 g-4 my-3">
+                    <div v-for="(attr, index) in attributes.slice(0, 10)" :key="'card-' + index" class="col">
+                        <div class="card h-100">
+                            <div class="card-header">{{ attr.label }}</div>
+                            <div class="card-title">{{ attr.value }}</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">{{ Math.floor(attr.value / 2) }}</div>
+                                    <div class="col">{{ Math.floor(attr.value / 5) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-header" data-bs-toggle="tooltip" data-bs-placement="top"
+                                 :title="moverate.label">
+                                <i class="fa-solid fa-person-running"></i>
+                            </div>
+                            <div class="card-body">
+                                <div>{{ moverate.value }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-header" data-bs-toggle="tooltip" data-bs-placement="top"
+                                 :title="damagebounds.label">
+                                <i class="fa-solid fa-hand-fist"></i>
+                            </div>
+                            <div class="card-body">
+                                <div>{{ damagebounds.value }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-header" data-bs-toggle="tooltip" data-bs-placement="top"
+                                 :title="build.label">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                            <div class="card-body">
+                                <div>{{ build.value }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="skills" role="tabpanel" aria-labelledby="skills-tab">
+                <div class="row g-3 my-3">
+                    <div class="col-md">
+                        <div class="card h-100">
+                            <div class="card-header">技能</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="equipment" role="tabpanel" aria-labelledby="equipment-tab">
+                <form>
+                    <div class="row g-3 my-3">
+                        <div class="col-md-6">
+                            <label for="weapons" class="form-label">武器</label>
+                            <textarea class="form-control" id="weapons" rows="8" placeholder="武器"></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="armor" class="form-label">防具</label>
+                            <textarea class="form-control" id="armor" rows="8" placeholder="防具"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="spells" role="tabpanel" aria-labelledby="spells-tab">
+                <div class="row g-3 my-3">
+                    <div class="col-md">
+                        <label for="spells" class="form-label">咒語</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
