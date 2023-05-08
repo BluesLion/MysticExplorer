@@ -16,8 +16,8 @@
 <div id="app" class="container">
     <h1 class="text-center my-4">克蘇魯的呼喚7版角色卡</h1>
     <div class="row">
-        <div class="col-md-6 name-section mx-auto">
-            <div class="name-badge" :style="{ backgroundImage: 'url(' + avatarUrl + ')' }"></div>
+        <div class="col-12 text-center name-section">
+            <div class="name-badge mx-auto" :style="{ backgroundImage: 'url(' + avatarUrl + ')' }"></div>
             <div class="badge rounded-pill bg-primary text-white name-text">
                 <span>{{ name.value }}</span>
             </div>
@@ -73,18 +73,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row row-cols-1 row-cols-md-3 g-4 my-3">
-                    <div v-for="(attr, index) in attributes.slice(0, 10)" :key="'card-' + index" class="col">
-                        <div class="card h-100">
-                            <div class="card-header">{{ attr.label }}</div>
-                            <div class="card-title">{{ attr.value }}</div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">{{ Math.floor(attr.value / 2) }}</div>
-                                    <div class="col">{{ Math.floor(attr.value / 5) }}</div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col" v-for="attr in attributes.slice(0, 11)" :key="'card-' + attr.id">
+                        <attribute-card :attr="attr"></attribute-card>
                     </div>
                     <div class="col">
                         <div class="card h-100">
@@ -117,6 +108,42 @@
                             <div class="card-body">
                                 <div>{{ build.value }}</div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-3 mx-3">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center bg-danger rounded p-1">
+                            <i class="fa-solid fa-circle-chevron-left text-white" @click="decHP"></i>
+                            <div class="text-white">{{ hitPoints.label }}: {{ hitPoints.current }}/{{ hitPoints.max }}</div>
+                            <i class="fa-solid fa-circle-chevron-right text-white" @click="incHP"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-3 mx-3">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center bg-warning rounded p-1">
+                            <i class="fa-solid fa-circle-chevron-left text-white" @click="decSAN"></i>
+                            <div class="text-white">{{ sanity.label }}: {{ sanity.current }}/{{ sanity.max }}</div>
+                            <i class="fa-solid fa-circle-chevron-right text-white" @click="incSAN"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-3 mx-3">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center bg-success rounded p-1">
+                            <i class="fa-solid fa-circle-chevron-left text-white" @click="decLUK"></i>
+                            <div class="text-white">{{ luck.label }}: {{ luck.current }}/{{ luck.max }}</div>
+                            <i class="fa-solid fa-circle-chevron-right text-white" @click="incLUK"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-3 mx-3">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center bg-info rounded p-1">
+                            <i class="fa-solid fa-circle-chevron-left text-white" @click="decMP"></i>
+                            <div class="text-white">{{ magicPoints.label }}: {{ magicPoints.current }}/{{ magicPoints.max }}</div>
+                            <i class="fa-solid fa-circle-chevron-right text-white" @click="incMP"></i>
                         </div>
                     </div>
                 </div>

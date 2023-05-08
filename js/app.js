@@ -2,25 +2,29 @@ const app = Vue.createApp({
     data() {
         return {
             avatarUrl: 'img/avatar.png',
-            name: { label: "姓名", id: "name", value: this.generateName() },
-            occupation: { label: "職業", value: "死肥宅" },
-            age: { label: "年齡", value: Math.floor(Math.random() * 99) + 1 },
-            residence: { label: "居住地", value: "波士頓" },
-            birthplace: { label: "出生地", value: "洛杉磯" },
+            name: {label: "姓名", id: "name", value: this.generateName()},
+            occupation: {label: "職業", value: "死肥宅"},
+            age: {label: "年齡", value: Math.floor(Math.random() * 99) + 1},
+            residence: {label: "居住地", value: "波士頓"},
+            birthplace: {label: "出生地", value: "洛杉磯"},
             attributes: [
-                { label: "力量", id: "strength", value: this.genAttr() },
-                { label: "敏捷", id: "dexterity", value: this.genAttr() },
-                { label: "意志", id: "willpower", value: this.genAttr() },
-                { label: "體質", id: "constitution", value: this.genAttr() },
-                { label: "外貿", id: "appearance", value: this.genAttr() },
-                { label: "教育", id: "education", value: this.genAttr() },
-                { label: "體型", id: "size", value: this.genAttr() },
-                { label: "智力", id: "intelligence", value: this.genAttr() },
-                { label: "閃躲", id: "dodge", value: this.genAttr() }
+                {label: "力量", id: "strength", value: this.genAttr()},
+                {label: "敏捷", id: "dexterity", value: this.genAttr()},
+                {label: "意志", id: "willpower", value: this.genAttr()},
+                {label: "體質", id: "constitution", value: this.genAttr()},
+                {label: "外貿", id: "appearance", value: this.genAttr()},
+                {label: "教育", id: "education", value: this.genAttr()},
+                {label: "體型", id: "size", value: this.genAttr()},
+                {label: "智力", id: "intelligence", value: this.genAttr()},
+                {label: "閃躲", id: "dodge", value: this.genAttr()},
             ],
-            moverate: { label: "移動", value: 8 },
-            damagebounds: { label: "攻擊加成", value: 0 },
-            build: { label: "防禦", value: 0 },
+            moverate: {label: "移動", value: 8},
+            damagebounds: {label: "攻擊加成", value: 0},
+            build: {label: "防禦", value: 0},
+            hitPoints: {label: "生命", current: 11, max: 11},
+            sanity: {label: "心智", current: 11, max: 12},
+            luck: {label: "幸運", current: 11, max: 13},
+            magicPoints: {label: "魔法", current: 11, max: 14},
         };
     },
     methods: {
@@ -38,12 +42,41 @@ const app = Vue.createApp({
 
             return randomFirstName + randomLastName;
         },
+        modifyValue(obj, delta) {
+            const newValue = obj.current + delta;
+            if (newValue >= 0 && newValue <= obj.max) {
+                obj.current = newValue;
+            }
+        },
+
+        decHP() { this.modifyValue(this.hitPoints, -1); },
+        incHP() { this.modifyValue(this.hitPoints, 1); },
+        decSAN() { this.modifyValue(this.sanity, -1); },
+        incSAN() { this.modifyValue(this.sanity, 1); },
+        decLUK() { this.modifyValue(this.luck, -1); },
+        incLUK() { this.modifyValue(this.luck, 1); },
+        decMP() { this.modifyValue(this.magicPoints, -1); },
+        incMP() { this.modifyValue(this.magicPoints, 1); },
     },
+});
+
+app.component('attribute-card', {
+    props: ['attr'],
+    template: `
+    <div class="card h-100">
+      <div class="card-header" v-bind:title="attr.label">
+        <i v-bind:class="attr.icon">{{ attr.label }}</i>
+      </div>
+      <div class="card-body">
+        <div>{{ attr.value }}</div>
+      </div>
+    </div>
+  `
 });
 
 app.mount("#app");
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
+    return new bootstrap.Tooltip(tooltipTriggerEl)
 })
