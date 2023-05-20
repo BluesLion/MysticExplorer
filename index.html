@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>克蘇魯的呼喚7版角色卡</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 
 <body>
@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-    <div class="mt-4">
+    <div class="main mt-2">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="border nav-link active" id="basic-info-tab" data-bs-toggle="tab"
@@ -50,35 +50,35 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="basic-info" role="tabpanel" aria-labelledby="basic-info-tab">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="card" data-bs-toggle="tooltip" data-bs-placement="top" :title="occupation.label">
                             {{ occupation.value }}
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="card" data-bs-toggle="tooltip" data-bs-placement="top" :title="age.label">
                             {{age.value }}
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="card" data-bs-toggle="tooltip" data-bs-placement="bottom" :title="residence.label">
                             {{ residence.value }}
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="card" data-bs-toggle="tooltip" data-bs-placement="bottom" :title="birthplace.label">
                             {{ birthplace.value }}
                         </div>
                     </div>
                 </div>
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <div class="col" v-for="attr in attributes.slice(0, 11)" :key="'card-' + attr.id">
-                        <attribute-card :attr="attr"></attribute-card>
+                <div class="row row-cols-3">
+                    <div class="col-4" v-for="attr in attributes.slice(0, 11)" :key="'card-' + attr.id">
+                        <attr-card :attr="attr"></attr-card>
                     </div>
-                    <div class="col">
-                        <div class="card h-100">
+                    <div class="col-4">
+                        <div class="card">
                             <div class="card-header" data-bs-toggle="tooltip" data-bs-placement="top"
                                  :title="moverate.label">
                                 <i class="fa-solid fa-person-running"></i>
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-4">
                         <div class="card h-100">
                             <div class="card-header" data-bs-toggle="tooltip" data-bs-placement="top"
                                  :title="damagebounds.label">
@@ -99,7 +99,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-4">
                         <div class="card h-100">
                             <div class="card-header" data-bs-toggle="tooltip" data-bs-placement="top"
                                  :title="build.label">
@@ -112,7 +112,7 @@
                     </div>
                 </div>
                 <div class="row my-3 mx-3">
-                    <div class="col-12">
+                    <div class="col-6-12">
                         <div class="d-flex justify-content-between align-items-center bg-danger rounded p-1">
                             <i class="fa-solid fa-circle-chevron-left text-white" @click="decHP"></i>
                             <div class="text-white">{{ hitPoints.label }}: {{ hitPoints.current }}/{{ hitPoints.max }}</div>
@@ -121,7 +121,7 @@
                     </div>
                 </div>
                 <div class="row my-3 mx-3">
-                    <div class="col-12">
+                    <div class="col-6-12">
                         <div class="d-flex justify-content-between align-items-center bg-warning rounded p-1">
                             <i class="fa-solid fa-circle-chevron-left text-white" @click="decSAN"></i>
                             <div class="text-white">{{ sanity.label }}: {{ sanity.current }}/{{ sanity.max }}</div>
@@ -150,7 +150,7 @@
             </div>
             <div class="tab-pane fade" id="skills" role="tabpanel" aria-labelledby="skills-tab">
                 <div class="row g-3 my-3">
-                    <div class="col-md">
+                    <div class="col-6">
                         <div class="card h-100">
                             <div class="card-header">技能</div>
                         </div>
@@ -160,11 +160,11 @@
             <div class="tab-pane fade" id="equipment" role="tabpanel" aria-labelledby="equipment-tab">
                 <form>
                     <div class="row g-3 my-3">
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <label for="weapons" class="form-label">武器</label>
                             <textarea class="form-control" id="weapons" rows="8" placeholder="武器"></textarea>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <label for="armor" class="form-label">防具</label>
                             <textarea class="form-control" id="armor" rows="8" placeholder="防具"></textarea>
                         </div>
@@ -173,7 +173,7 @@
             </div>
             <div class="tab-pane fade" id="spells" role="tabpanel" aria-labelledby="spells-tab">
                 <div class="row g-3 my-3">
-                    <div class="col-md">
+                    <div class="col-6">
                         <label for="spells" class="form-label">咒語</label>
                     </div>
                 </div>

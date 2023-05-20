@@ -23,8 +23,8 @@ h1 {
 }
 
 .name-badge {
-    width: 150px;
-    height: 150px;
+    width: 50%;
+    height: 100px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -51,11 +51,7 @@ h1 {
     white-space: nowrap;
 }
 
-.mt-4 {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    min-height: 300px;
+.main {
     background-color: var(--sandy-brown);
 }
 
@@ -82,8 +78,8 @@ h1 {
     width: 100%;
 }
 
-.card-title {
-    margin: 5px;
+.card-body {
+    white-space: nowrap;
 }
 
 button.btn.btn-light {
@@ -93,8 +89,4 @@ button.btn.btn-light {
 button.btn.btn-light:hover {
     color: var(--saffron);
     background-color: var(--sandy-brown);
-}
-
-.tab-content {
-    min-height: 300px;
 }

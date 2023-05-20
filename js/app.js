@@ -12,7 +12,7 @@ const app = Vue.createApp({
                 {label: "敏捷", id: "dexterity", value: this.genAttr()},
                 {label: "意志", id: "willpower", value: this.genAttr()},
                 {label: "體質", id: "constitution", value: this.genAttr()},
-                {label: "外貿", id: "appearance", value: this.genAttr()},
+                {label: "外貌", id: "appearance", value: this.genAttr()},
                 {label: "教育", id: "education", value: this.genAttr()},
                 {label: "體型", id: "size", value: this.genAttr()},
                 {label: "智力", id: "intelligence", value: this.genAttr()},
@@ -48,28 +48,45 @@ const app = Vue.createApp({
                 obj.current = newValue;
             }
         },
-
-        decHP() { this.modifyValue(this.hitPoints, -1); },
-        incHP() { this.modifyValue(this.hitPoints, 1); },
-        decSAN() { this.modifyValue(this.sanity, -1); },
-        incSAN() { this.modifyValue(this.sanity, 1); },
-        decLUK() { this.modifyValue(this.luck, -1); },
-        incLUK() { this.modifyValue(this.luck, 1); },
-        decMP() { this.modifyValue(this.magicPoints, -1); },
-        incMP() { this.modifyValue(this.magicPoints, 1); },
+        decHP() {
+            this.modifyValue(this.hitPoints, -1);
+        },
+        incHP() {
+            this.modifyValue(this.hitPoints, 1);
+        },
+        decSAN() {
+            this.modifyValue(this.sanity, -1);
+        },
+        incSAN() {
+            this.modifyValue(this.sanity, 1);
+        },
+        decLUK() {
+            this.modifyValue(this.luck, -1);
+        },
+        incLUK() {
+            this.modifyValue(this.luck, 1);
+        },
+        decMP() {
+            this.modifyValue(this.magicPoints, -1);
+        },
+        incMP() {
+            this.modifyValue(this.magicPoints, 1);
+        },
     },
 });
 
-app.component('attribute-card', {
+app.component('attr-card', {
     props: ['attr'],
     template: `
-    <div class="card h-100">
-      <div class="card-header" v-bind:title="attr.label">
-        <i v-bind:class="attr.icon">{{ attr.label }}</i>
-      </div>
-      <div class="card-body">
-        <div>{{ attr.value }}</div>
-      </div>
+    <div class="card">
+        <div class="card-header" v-bind:title="attr.label">
+            <i v-bind:class="attr.icon">{{ attr.label }}</i>
+        </div>        
+        <div class="card-body">
+            <div>{{ attr.value }}</div>
+            <div class="badge bg-dark text-white mx-1">{{ Math.floor(attr.value / 2) }}</div>
+            <div class="badge bg-dark text-white mx-1">{{ Math.floor(attr.value / 5) }}</div>
+        </div>
     </div>
   `
 });
