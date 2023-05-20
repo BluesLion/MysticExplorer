@@ -6,6 +6,12 @@
     --burnt-sienna: #e76f51ff;
 }
 
+@media (min-width: 576px) {
+    .w-sm-75 {
+        width: 75% !important;
+    }
+}
+
 body {
     background-color: var(--charcoal);
     color: var(--sandy-brown);
