@@ -10,6 +10,11 @@
     .w-sm-75 {
         width: 75% !important;
     }
+
+    .name-badge {
+        width: 100% !important;
+        height: 200px !important;
+    }
 }
 
 body {
@@ -42,6 +47,14 @@ h1 {
     width: 200px;
     font-size: 24px;
     white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.name-text .fa-solid {
+    position: absolute;
+    right: 1rem;
 }
 
 .name-section {

@@ -36,11 +36,15 @@ const app = Vue.createApp({
         },
         generateName() {
             const firstName = ["張", "李", "王", "劉", "陳", "楊", "趙", "黃", "周", "吳"];
-            const lastName = ["偉", "芳", "婷", "秀英", "敏", "靜", "麗", "強", "磊", "洋", "艷", "勇", "軍", "杰", "娟", "濤", "超", "明", "霞", "秀蘭", "剛", "平", "燕", "輝", "玲", "桂英"];
+            const lastName = ["偉", "芳", "婷", "秀英", "敏", "靜", "麗", "強", "磊", "洋", "艷", "勇", "軍", "杰",
+                "娟", "濤", "超", "明", "霞", "秀蘭", "剛", "平", "燕", "輝", "玲", "桂英"];
+            const sex = ['<i class="fa-solid fa-mars ms-auto"></i>',
+                '<i class="fa-solid fa-venus ms-auto"></i>'];
             const randomFirstName = firstName[Math.floor(Math.random() * firstName.length)];
             const randomLastName = lastName[Math.floor(Math.random() * lastName.length)];
+            const randomSex = sex[Math.floor(Math.random() * sex.length)];
 
-            return randomFirstName + randomLastName;
+            return randomFirstName + randomLastName + randomSex;
         },
         modifyValue(obj, delta) {
             const newValue = obj.current + delta;

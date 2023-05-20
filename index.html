@@ -19,7 +19,7 @@
         <div class="col-12 text-center name-section">
             <div class="name-badge mx-auto" :style="{ backgroundImage: 'url(' + avatarUrl + ')' }"></div>
             <div class="badge rounded-pill bg-primary text-white name-text">
-                <span>{{ name.value }}</span>
+                <span v-html="name.value"></span>
             </div>
         </div>
     </div>
